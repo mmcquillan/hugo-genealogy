@@ -1,0 +1,48 @@
+{{ define "main" }}
+
+<section class="single">
+    <h1 class="title">{{ .Title }}</h1>
+
+    <div class="taxonomies">
+        {{ with .Params.categories }}
+        <div>
+            Categories:
+            {{ range . }}
+                <a href="{{ "categories/" | relURL }}{{ . | urlize }}">{{ . }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+
+        {{ with .Params.tags }}
+            <div>
+                Tags:
+                {{ range . }}
+                    <a href="{{ "tags/" | relURL }}{{ . | urlize }}">{{ . }}</a>
+                {{ end }}
+            </div>
+        {{ end }}
+    </div>
+
+    <hr />
+
+    <div class="content">
+        {{ .Content }}
+    </div>
+
+		{{ $taxonomyObject := .Site.Taxonomies.people }}
+		{{ $weightedPages := $taxonomyObject.Get .Title }}
+		{{ if gt $weightedPages.Len 0 }}
+			<hr />
+			<div class="content">
+				Media:
+        <ul>
+				{{ range $weightedPages }}
+          <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+				{{ end }}
+        </ul>
+			</div>
+		{{ end }}
+
+</section>
+
+{{ end }}

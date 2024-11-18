@@ -1,0 +1,35 @@
+
+theme = "flat"
+
+[taxonomies]
+people = "people"
+
+[[menus.main]]
+name = "History"
+url = "/history/"
+weight = 30
+
+[[menus.main]]
+name = "Family"
+url = "/family/"
+weight = 40
+
+[[menus.main]]
+name = "Media"
+url = "/media/"
+weight = 50
+
+[[menus.main]]
+name = "About"
+pageref = "about"
+weight = 60
+
+[[menus.main]]
+name = "Minutiae"
+pageref = "minutiae"
+weight = 70
+
+[[params.footer_rows]]
+[[params.footer_rows.items]]
+pre = "Copyright 2024"
+

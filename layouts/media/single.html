@@ -1,0 +1,41 @@
+{{ define "main" }}
+
+<section class="single">
+    <h1 class="title">{{ .Title }}</h1>
+
+    <div class="taxonomies">
+        {{ with .Params.categories }}
+        <div>
+            Categories:
+            {{ range . }}
+                <a href="{{ "categories/" | relURL }}{{ . | urlize }}">{{ . }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+
+        {{ with .Params.tags }}
+            <div>
+                Tags:
+                {{ range . }}
+                    <a href="{{ "tags/" | relURL }}{{ . | urlize }}">{{ . }}</a>
+                {{ end }}
+            </div>
+        {{ end }}
+    </div>
+
+    <hr />
+
+    <div class="content">
+        {{ .Content }}
+        {{ with .Params.people }}
+            <div class="taxonomies">
+                {{ range . }}
+                <a href="{{ "family/" | relURL }}{{ replace (lower (.)) " " "_" }}">{{ . }}</a>
+                {{ end }}
+            </div>
+        {{ end }}
+    </div>
+
+</section>
+
+{{ end }}
